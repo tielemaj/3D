@@ -1,0 +1,18 @@
+M211 S0;
+G91 ; Switch from absolute positioning to relative positioning
+G1 Z1 F1000 ; Lift nozzle by 1 mm in relative positioning mode
+G90 ; Return to absolute positioning
+G92 E0 ; Reset extrusion distance (needed for following steps)
+;G1 E-7 F1800 ; Retract filament by 5+7=12mm at 30 mm/s (1800 mm/min) on old tool
+G1 X0 F6000 ; Go to X=-9.5 at 100 mm/sec
+G92 E0 ; Reset again extrusion distance on old tool
+T2 ; Activate tool 0
+G92 E0 ; Reset extrusion distance on new tool
+G1 E75 F180 ; Extrude x mm of filament at 3 mm/s on new tool
+G92 E0 ; Reset extrusion distance on new tool
+;G1 E-10 F1800 ; Retract filament by 5 mm at 30 mm/s
+G1 X[current_position_x] Y[current_position_y] F6000 ; Move to next position on print at 100 mm/s
+G91 ; Switch from absolute positioning to relative positioning
+G1 Z-1 F1000 ; Move down nozzle by 1 mm in relative positioning mode
+G90 ; Return to absolute positioning
+M211 S1
